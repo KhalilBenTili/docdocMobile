@@ -6,6 +6,7 @@
 package com.mycompany.myapp;
 
 import com.codename1.ui.Form;
+import com.codename1.ui.layouts.BoxLayout;
 
 /**
  * GUI builder created Form
@@ -15,16 +16,11 @@ import com.codename1.ui.Form;
 public class Fixed extends Form {
 
     public Fixed() {
-        this(com.codename1.ui.util.Resources.getGlobalResources());
+       setTitle("DocDoc");
+       setLayout(BoxLayout.y());
+      
     }
     
-    public Fixed(com.codename1.ui.util.Resources resourceObjectInstance) {
-        initGuiBuilderComponents(resourceObjectInstance);
-    }
-
-//-- DON'T EDIT BELOW THIS LINE!!!
-    private void initGuiBuilderComponents(com.codename1.ui.util.Resources resourceObjectInstance) {
-       
-    }
+    
 //-- DON'T EDIT ABOVE THIS LINE!!!
 }
