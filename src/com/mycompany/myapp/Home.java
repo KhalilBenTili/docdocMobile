@@ -22,7 +22,7 @@ public class Home extends Form {
         initGuiBuilderComponents(resourceObjectInstance);
     }
 
-//////-- DON'T EDIT BELOW THIS LINE!!!
+////////////-- DON'T EDIT BELOW THIS LINE!!!
     protected com.codename1.ui.Button gui_Button = new com.codename1.ui.Button();
 
 
@@ -34,7 +34,7 @@ public class Home extends Form {
                 setInlineStylesTheme(resourceObjectInstance);
         setTitle("Home");
         setName("Home");
-        gui_Button.setText("Button");
+        gui_Button.setText("Bouton");
                 gui_Button.setInlineStylesTheme(resourceObjectInstance);
         gui_Button.setName("Button");
         addComponent(gui_Button);
