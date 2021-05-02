@@ -5,23 +5,24 @@
  */
 package com.mycompany.myapp.Gui.alaa;
 
+import com.codename1.components.SpanLabel;
+import com.codename1.ui.FontImage;
+import com.codename1.ui.Form;
+import com.mycompany.myapp.Services.PaiementService;
+
 /**
- * GUI builder created Form
  *
  * @author alaae
  */
-public class ListPaiement extends com.codename1.ui.Form {
+public class ListPaiement extends Form {
 
-    public ListPaiement() {
-        this(com.codename1.ui.util.Resources.getGlobalResources());
+    public ListPaiement(Form previous) {
+        setTitle("Votre liste de paiements.");
+        SpanLabel sp = new SpanLabel();
+        sp.setText(PaiementService.getInstance().getAllPaiements().toString());
+        add(sp);
+        getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e->previous.showBack());
     }
     
-    public ListPaiement(com.codename1.ui.util.Resources resourceObjectInstance) {
-        initGuiBuilderComponents(resourceObjectInstance);
-    }
-
-//-- DON'T EDIT BELOW THIS LINE!!!
-    private void initGuiBuilderComponents(com.codename1.ui.util.Resources resourceObjectInstance) {
-    }
-//-- DON'T EDIT ABOVE THIS LINE!!!
+    
 }

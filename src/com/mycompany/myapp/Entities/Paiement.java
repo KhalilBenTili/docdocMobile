@@ -17,8 +17,7 @@ public class Paiement {
     private Double prix;
     private int userid;
     
-    public Paiement(int id, String nom, String prenom, String adresse, String email, String type, String status, int numero, Double prix, int userid) {
-        this.id = id;
+    public Paiement( String nom, String prenom, String adresse, String email, String type, String status, int numero, Double prix, int userid) {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;

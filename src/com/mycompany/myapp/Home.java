@@ -5,7 +5,11 @@
  */
 package com.mycompany.myapp;
 
+import com.codename1.ui.Button;
 import com.codename1.ui.Form;
+import com.codename1.ui.layouts.BoxLayout;
+import com.mycompany.myapp.Gui.alaa.AddPaiement;
+import com.mycompany.myapp.Gui.alaa.ListPaiement;
 
 /**
  * GUI builder created Form
@@ -22,23 +26,19 @@ public class Home extends Form {
         initGuiBuilderComponents(resourceObjectInstance);
     }
 
-////////////-- DON'T EDIT BELOW THIS LINE!!!
     protected com.codename1.ui.Button gui_Button = new com.codename1.ui.Button();
+    Form current;
 
-
-// <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initGuiBuilderComponents(com.codename1.ui.util.Resources resourceObjectInstance) {
-        setLayout(new com.codename1.ui.layouts.LayeredLayout());
-        setInlineStylesTheme(resourceObjectInstance);
-        setScrollableY(true);
-                setInlineStylesTheme(resourceObjectInstance);
+        current = this;
         setTitle("Home");
-        setName("Home");
-        gui_Button.setText("Bouton");
-                gui_Button.setInlineStylesTheme(resourceObjectInstance);
-        gui_Button.setName("Button");
-        addComponent(gui_Button);
-        ((com.codename1.ui.layouts.LayeredLayout)gui_Button.getParent().getLayout()).setInsets(gui_Button, "30.03597% 27.439886% auto auto").setReferenceComponents(gui_Button, "-1 -1 -1 -1").setReferencePositions(gui_Button, "0.0 0.0 0.0 0.0");
+        setLayout(BoxLayout.y());
+       
+        Button btnAddPayement = new Button("Ajouter Paiement");
+        Button btnListPayement = new Button("Afficher Paiement");
+        btnAddPayement.addActionListener(e-> new AddPaiement(current).show());
+        btnListPayement.addActionListener(e-> new ListPaiement(current).show());
+        addAll(btnAddPayement,btnListPayement);
     }// </editor-fold>
 
 //-- DON'T EDIT ABOVE THIS LINE!!!
