@@ -22,7 +22,7 @@ import com.mycompany.myapp.Services.PaiementService;
  * @author alaae
  */
 public class AddPaiement extends Form {
-
+    Form current;
     public AddPaiement(Form previous) {
         setTitle("Ajouter un nouveau paiement.");
         setLayout(BoxLayout.y());
@@ -42,9 +42,10 @@ public class AddPaiement extends Form {
                 }
                 else{
                     try{
-                        Paiement p = new Paiement(tfnom.getText(), tfprenom.getText(), tfadresse.getText(), tfemail.getText(),"En ligne", "Payé", Integer.parseInt(tfnumero.getText()), 12.2 , 1);
+                        Paiement p = new Paiement(tfnom.getText(), tfprenom.getText(), tfadresse.getText(), tfemail.getText(),"Enligne", "Paid", Integer.parseInt(tfnumero.getText()), 12.2 , 1);
                         if(PaiementService.getInstance().ajoutPaiement(p)){
-                            Dialog.show("Success","Connection accepted", new Command("OK"));    
+                            Dialog.show("Success","Connection accepted", new Command("OK"));  
+                            
                         }
                         else 
                             Dialog.show("ERROR","Server error", new Command("OK"));                
@@ -55,6 +56,7 @@ public class AddPaiement extends Form {
                 }
             }    
         });
+        btnValider.addActionListener(e-> new ListPaiement(current).show());
         
         addAll(tfnom, tfprenom, tfadresse, tfnumero, tfemail, btnValider);
         getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e->previous.showBack());
