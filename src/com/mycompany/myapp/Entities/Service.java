@@ -5,7 +5,6 @@
  */
 package com.mycompany.myapp.Entities;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 
