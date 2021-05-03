@@ -14,13 +14,5 @@ import com.codename1.ui.layouts.BoxLayout;
  * @author khali
  */
 public class Fixed extends Form {
-
-    public Fixed() {
-       setTitle("DocDoc");
-       setLayout(BoxLayout.y());
-      
-    }
-    
-    
 //-- DON'T EDIT ABOVE THIS LINE!!!
 }
