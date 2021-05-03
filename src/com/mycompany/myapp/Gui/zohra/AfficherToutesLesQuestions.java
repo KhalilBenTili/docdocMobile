@@ -7,18 +7,17 @@ package com.mycompany.myapp.Gui.zohra;
 
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
-import com.codename1.ui.layouts.BoxLayout;
 
 /**
  *
  * @author user
  */
-public class PoserQuestion extends Form{
+public class AfficherToutesLesQuestions extends Form {
 
-    public PoserQuestion(Form previous) {
-        setTitle("Poser Question");
+    public AfficherToutesLesQuestions(Form previous) {
+        setTitle("liste Questions");
         getToolbar().addMaterialCommandToLeftBar("",FontImage.MATERIAL_ARROW_BACK,e->previous.showBack());
-    }
     
+    }
     
 }
