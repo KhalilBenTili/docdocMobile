@@ -5,10 +5,71 @@
  */
 package com.mycompany.myapp.Entities;
 
+import java.util.Objects;
+
 /**
  *
  * @author khali
  */
 public class CategorieMedicale {
+    private int id;
+    private String nom;
+
+    public CategorieMedicale() {
+    }
+
+    public CategorieMedicale(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
+    }
+    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    @Override
+    public String toString() {
+        return  " categorie Medicale : id=" + id + ", nom=" + nom + "\n";
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 19 * hash + Objects.hashCode(this.nom);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CategorieMedicale other = (CategorieMedicale) obj;
+        if (!Objects.equals(this.nom, other.nom)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
 }
