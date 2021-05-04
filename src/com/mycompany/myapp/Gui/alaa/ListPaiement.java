@@ -61,6 +61,4 @@ public class ListPaiement extends Form {
         add(C2);
         
     }
-    
-    
 }

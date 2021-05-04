@@ -62,10 +62,7 @@ public class AddPaiement extends Form {
             }    
         });
         btnValider.addActionListener(e-> new ListPaiement(current).show());
-        Form hi = new Form("Browser", new BorderLayout());
-        BrowserComponent browser = new BrowserComponent();
-        browser.setURL("https://www.codenameone.com/");
-        hi.add(BorderLayout.CENTER, browser);
+
 
         
         addAll(tfnom, tfprenom, tfadresse, tfnumero, tfemail, btnValider);
