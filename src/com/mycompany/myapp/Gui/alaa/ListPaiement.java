@@ -46,7 +46,7 @@ public class ListPaiement extends Form {
         Label prix = new Label("Prix : "+String.valueOf(P.getPrix()));
         Label type = new Label("Type : "+P.getType());
         Label status = new Label("Status : "+P.getStatus());
-        Label sep = new Label("----------------------------------------------------------------");
+        Label sep = new Label("------------------------------------------------------------------");
         
         C1.add(nom);
         C1.add(prenom);

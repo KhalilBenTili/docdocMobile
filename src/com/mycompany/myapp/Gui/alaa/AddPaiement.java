@@ -5,6 +5,7 @@
  */
 package com.mycompany.myapp.Gui.alaa;
 
+import com.codename1.ui.BrowserComponent;
 import com.codename1.ui.Button;
 import com.codename1.ui.Command;
 import com.codename1.ui.Dialog;
@@ -13,9 +14,12 @@ import com.codename1.ui.Form;
 import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
+import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.mycompany.myapp.Entities.Paiement;
 import com.mycompany.myapp.Services.PaiementService;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 /**
  *
@@ -44,7 +48,8 @@ public class AddPaiement extends Form {
                     try{
                         Paiement p = new Paiement(tfnom.getText(), tfprenom.getText(), tfadresse.getText(), tfemail.getText(),"Enligne", "Paid", Integer.parseInt(tfnumero.getText()), 12.2 , 1);
                         if(PaiementService.getInstance().ajoutPaiement(p)){
-                            Dialog.show("Success","Connection accepted", new Command("OK"));  
+                            Dialog.show("Success","Connection accepted", new Command("OK")); 
+                               
                             
                         }
                         else 
@@ -57,6 +62,11 @@ public class AddPaiement extends Form {
             }    
         });
         btnValider.addActionListener(e-> new ListPaiement(current).show());
+        Form hi = new Form("Browser", new BorderLayout());
+        BrowserComponent browser = new BrowserComponent();
+        browser.setURL("https://www.codenameone.com/");
+        hi.add(BorderLayout.CENTER, browser);
+
         
         addAll(tfnom, tfprenom, tfadresse, tfnumero, tfemail, btnValider);
         getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e->previous.showBack());
