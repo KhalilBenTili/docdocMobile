@@ -10,6 +10,8 @@ package com.mycompany.myapp.Utils;
  * @author khali
  */
 public class Statics {
-    public static final String BASE_URL="http://41.226.11.252:113000";
+  //public static final String BASE_URL="http://41.226.11.252:113000";
+    public static final String BASE_URL="http://127.0.0.1:8000";
+    //public static final String BASE_URL="http://51.89.167.87:51100";
     
 }

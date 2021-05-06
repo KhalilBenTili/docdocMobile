@@ -6,7 +6,7 @@
 package com.mycompany.myapp.Entities;
 
 
-import java.util.Date;
+
 import java.util.Objects;
 
 /**
@@ -16,21 +16,21 @@ import java.util.Objects;
 public class Consultation {
         private int id;
     private boolean isAccepted;
-    private Date datehr;
+    private String datehr;
     private User medecinUser;
     private User PatientUser;
 
     public Consultation() {
     }
 
-    public Consultation(int id, boolean isAccepted, Date datehr, User medecinUser, User PatientUser) {
+    public Consultation(int id, boolean isAccepted, String datehr, User medecinUser, User PatientUser) {
         this.id = id;
         this.isAccepted = isAccepted;
         this.datehr = datehr;
         this.medecinUser = medecinUser;
         this.PatientUser = PatientUser;
     }
-    public Consultation( boolean isAccepted, Date datehr, User medecinUser, User PatientUser) {
+    public Consultation( boolean isAccepted, String datehr, User medecinUser, User PatientUser) {
 
         this.isAccepted = isAccepted;
         this.datehr = datehr;
@@ -53,11 +53,11 @@ public class Consultation {
         this.isAccepted = isAccepted;
     }
 
-    public Date getDatehr() {
+    public String getDatehr() {
         return datehr;
     }
 
-    public void setDatehr(Date datehr) {
+    public void setDatehr(String datehr) {
         this.datehr = datehr;
     }
 

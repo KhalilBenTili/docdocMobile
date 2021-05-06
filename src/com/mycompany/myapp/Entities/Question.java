@@ -13,8 +13,8 @@ import java.util.Objects;
  */
 public class Question {
     private int id;
-    private CategorieMedicale catMed;
-    private User user;
+    private int catMed;
+    private int user;
     private String titre;
     private String Symptomes;
     private int taille;
@@ -27,7 +27,7 @@ public class Question {
     public Question() {
     }
 
-    public Question(int id, CategorieMedicale catMed, User user, String titre, String Symptomes, int taille, int poids, boolean isTreated, boolean isAntMed, boolean isNameShown, boolean isAnswered) {
+    public Question(int id, int catMed, int user, String titre, String Symptomes, int taille, int poids, boolean isTreated, boolean isAntMed, boolean isNameShown, boolean isAnswered) {
         this.id = id;
         this.catMed = catMed;
         this.user = user;
@@ -40,7 +40,10 @@ public class Question {
         this.isNameShown = isNameShown;
         this.isAnswered = isAnswered;
     }
-    public Question(CategorieMedicale catMed, User user, String titre, String Symptomes, int taille, int poids, boolean isTreated, boolean isAntMed, boolean isNameShown, boolean isAnswered) {
+        public Question(int id) {
+        this.id = id;
+    }
+    public Question(int catMed, int user, String titre, String Symptomes, int taille, int poids, boolean isTreated, boolean isAntMed, boolean isNameShown, boolean isAnswered) {
         this.catMed = catMed;
         this.user = user;
         this.titre = titre;
@@ -61,19 +64,19 @@ public class Question {
         this.id = id;
     }
 
-    public CategorieMedicale getCatMed() {
+    public int getCatMed() {
         return catMed;
     }
 
-    public void setCatMed(CategorieMedicale catMed) {
+    public void setCatMed(int catMed) {
         this.catMed = catMed;
     }
 
-    public User getUser() {
+    public int getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(int user) {
         this.user = user;
     }
 

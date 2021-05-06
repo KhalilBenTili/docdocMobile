@@ -13,6 +13,8 @@ import com.codename1.ui.Toolbar;
 import java.io.IOException;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.io.NetworkEvent;
+import com.mycompany.myapp.Entities.Question;
+import com.mycompany.myapp.Gui.zohra.AfficherToutesLesQuestions;
 import com.mycompany.myapp.Gui.zohra.homeQuestion;
 
 /**
@@ -56,7 +58,8 @@ public class MyApplication {
         Form hi = new Form("Hi World", BoxLayout.y());
         hi.add(new Label("Hi World"));
         h.show();*/
-        new homeQuestion().show();
+        Question u= new Question(); 
+        new AfficherToutesLesQuestions(u).show();
     }
 
     public void stop() {

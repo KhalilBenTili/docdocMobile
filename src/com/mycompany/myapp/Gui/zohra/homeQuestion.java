@@ -17,7 +17,7 @@ import com.codename1.ui.layouts.BoxLayout;
 public class homeQuestion extends Form {
 Form current;
     public homeQuestion() {
-        current=this;
+       /* current=this;
         setTitle("Question");
         setLayout(BoxLayout.y());
         
@@ -27,7 +27,7 @@ Form current;
         
         btnPoserQuestion.addActionListener(e-> new PoserQuestion(current).show());
         btnListQuestion.addActionListener(e-> new AfficherToutesLesQuestions(current).show());
-        addAll(btnPoserQuestion,btnListQuestion);
+        addAll(btnPoserQuestion,btnListQuestion);*/
         
     }
     
