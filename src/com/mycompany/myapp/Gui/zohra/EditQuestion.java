@@ -10,18 +10,22 @@ import com.codename1.ui.TextField;
 import com.mycompany.myapp.Entities.Question;
 
 
+
+
+
 /**
  *
  * @author user
  */
-public class EditQuestion {
+public class EditQuestion extends Form{
 
-    EditQuestion(Form current, Question fi, Question u) {
+    public EditQuestion(Form current, Question fi) {
 
         TextField tfTitre= new TextField("","Titre");
+        TextField tfTitre2= new TextField("","2");
     }
 
-    void show() {
-        TextField tfTitre2= new TextField("","Titre");    }
+   /* void show() {
+        TextField tfTitre2= new TextField("","Titre");    }*/
     
 }

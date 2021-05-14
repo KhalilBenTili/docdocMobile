@@ -51,6 +51,7 @@ public class AfficherToutesLesQuestions extends Form {
                              for (Question fi : questions) {
                             Container ct = new Container(BoxLayout.y());
                             Label lTitre = new Label("Titre : "+fi.getTitre(),"RedLabel");
+                            Label ldusercat = new Label("categorie : "+fi.getCatMed().getNom()+" nom user: "+fi.getUser().getNom(),"RedLabel");
                            // Label lUser = new Label("cette question est ajoutée par: "+fi.getUser().getNom()+" "+fi.getUser().getPrenom(),"SmallLabel");
                             Label lSymptomes = new Label("Symptomes : "+fi.getSymptomes(),"RedLabel");
                             Label ldetails = new Label("Details poids: "+fi.getPoids()+" Taille: "+fi.getTaille(),"SmallLabel");
@@ -59,6 +60,7 @@ public class AfficherToutesLesQuestions extends Form {
                             //ct.add(lUser);
                             ct.add(ldetails);
                             ct.add(lSymptomes);
+                            ct.add(ldusercat);
                             
                            
                             Button Supp = new Button("Supprimer");
@@ -67,7 +69,7 @@ public class AfficherToutesLesQuestions extends Form {
                                             @Override
             public void actionPerformed(ActionEvent evt) {              
                 if (Dialog.show("Confirmation", "Voulez vous Modifier cette question ?", "Modifier ", "Annuler")) {
-                   // new EditQuestion(current, fi,u).show();
+                             new EditQuestion(current, fi).show();
             }    
             }
         });
@@ -79,6 +81,7 @@ public class AfficherToutesLesQuestions extends Form {
                         if( QuestionService.getInstance().delete(t)){
                             {
                                 Dialog.show("Success","supprimer",new Command("OK"));
+               
                                 new AfficherToutesLesQuestions(u).show();
                             }
                    

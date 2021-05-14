@@ -13,8 +13,8 @@ import java.util.Objects;
  */
 public class Question {
     private int id;
-    private int catMed;
-    private int user;
+    private CategorieMedicale catMed;
+    private User user;
     private String titre;
     private String Symptomes;
     private int taille;
@@ -27,7 +27,7 @@ public class Question {
     public Question() {
     }
 
-    public Question(int id, int catMed, int user, String titre, String Symptomes, int taille, int poids, boolean isTreated, boolean isAntMed, boolean isNameShown, boolean isAnswered) {
+    public Question(int id, CategorieMedicale catMed, User user, String titre, String Symptomes, int taille, int poids, boolean isTreated, boolean isAntMed, boolean isNameShown, boolean isAnswered) {
         this.id = id;
         this.catMed = catMed;
         this.user = user;
@@ -43,7 +43,7 @@ public class Question {
         public Question(int id) {
         this.id = id;
     }
-    public Question(int catMed, int user, String titre, String Symptomes, int taille, int poids, boolean isTreated, boolean isAntMed, boolean isNameShown, boolean isAnswered) {
+    public Question(CategorieMedicale catMed, User user, String titre, String Symptomes, int taille, int poids, boolean isTreated, boolean isAntMed, boolean isNameShown, boolean isAnswered) {
         this.catMed = catMed;
         this.user = user;
         this.titre = titre;
@@ -64,19 +64,19 @@ public class Question {
         this.id = id;
     }
 
-    public int getCatMed() {
+    public CategorieMedicale getCatMed() {
         return catMed;
     }
 
-    public void setCatMed(int catMed) {
+    public void setCatMed(CategorieMedicale catMed) {
         this.catMed = catMed;
     }
 
-    public int getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(int user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
