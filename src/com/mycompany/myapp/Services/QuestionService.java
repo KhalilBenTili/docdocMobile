@@ -47,7 +47,7 @@ public class QuestionService {
     public void add(Question ev) {
         
         ConnectionRequest con = new ConnectionRequest();// création d'une nouvelle demande de connexion 
-        con.setUrl(Statics.BASE_URL+"/add-question-json?titre="+ev.getTitre()+"&symptomes="+ev.getSymptomes()+"&userid="+ev.getUser()+"&catMedId="+ev.getCatMed()+"&ant="+ev.isIsAntMed()+"&name="+ev.isIsNameShown()+"&isTreated="+ev.isIsTreated()+"&poids="+ev.getPoids()+"&taille="+ev.getTaille());
+        con.setUrl(Statics.BASE_URL+"/add-question-json?titre="+ev.getTitre()+"&symptomes="+ev.getSymptomes()+"&userid="+ev.getUser().getId()+"&catMedId="+ev.getCatMed().getId()+"&ant="+ev.isIsAntMed()+"&name="+ev.isIsNameShown()+"&isTreated="+ev.isIsTreated()+"&poids="+ev.getPoids()+"&taille="+ev.getTaille());
         //con.setUrl(Statics.BASE_URL+"/add-question-json?titre="+"mobile"+"&symptomes="+"mobile"+"&userid=1&catMedId=1&ant=0&name=0&isTreated=0&poids=20&taille=90");
 
        // Insertion de l'URL de notre demande de connexion

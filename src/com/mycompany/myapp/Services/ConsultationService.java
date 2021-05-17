@@ -5,13 +5,19 @@
  */
 package com.mycompany.myapp.Services;
 
+import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
+import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
 import com.mycompany.myapp.Entities.Consultation;
+import com.mycompany.myapp.Entities.User;
 import com.mycompany.myapp.Utils.Statics;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -61,4 +67,125 @@ public class ConsultationService {
         NetworkManager.getInstance().addToQueueAndWait(con);
         return resultOK;
     }  
+         public ArrayList<Consultation> parseQuestions(String jsonText){
+        try {
+            consultations=new ArrayList<>();
+            JSONParser j = new JSONParser();// Instanciation d'un objet JSONParser permettant le parsing du résultat json
+
+            Map<String,Object> tasksListJson = j.parseJSON(new CharArrayReader(jsonText.toCharArray()));
+
+            List<Map<String,Object>> list = (List<Map<String,Object>>)tasksListJson.get("root");
+            
+
+            for(Map<String,Object> obj : list){
+                
+                System.out.println(obj);
+                //Création des tâches et récupération de leurs données
+                
+                
+                //user medecin affectation
+                String UserM =obj.get("userM").toString();
+                System.out.println(UserM);
+                int finUId =UserM.indexOf(".");
+                String newUserMId = UserM.substring(4, finUId); 
+                System.out.println(newUserMId);
+                int DebutNom=UserM.indexOf("nom=")+4;
+                int FinNom=UserM.indexOf(", prenom");
+                String nom = UserM.substring(DebutNom, FinNom); 
+                System.out.println("nom:"+nom);
+                int DebutPrenom=UserM.indexOf("prenom=")+7;
+                int FinPrenom=UserM.indexOf(", type");
+                String prenom = UserM.substring(DebutPrenom, FinPrenom); 
+                System.out.println("prenom:"+prenom);
+                
+                int DebutType=UserM.indexOf("type=")+5;
+                int FinType=UserM.indexOf(", numtel");
+                String type = UserM.substring(DebutType, FinType); 
+                System.out.println("type:"+type);
+                
+                int DebutNum=UserM.indexOf("numtel=")+7;
+                int FinNum=UserM.indexOf(", cin");
+                String numTel = UserM.substring(DebutNum, DebutNum+8); 
+                System.out.println(numTel);
+                User medecin= new User(finUId, nom, prenom, null, type, numTel, "0");
+               
+                
+                //user patient affectation
+                String UserL =obj.get("user").toString();
+                System.out.println(UserL);
+                int finUIdp =UserL.indexOf(".");
+                String newUserLIdp = UserL.substring(4, finUIdp); 
+                System.out.println(newUserLIdp);
+                int DebutNomp=UserL.indexOf("nom=")+4;
+                int FinNomp=UserL.indexOf(", prenom");
+                String nomp = UserL.substring(DebutNomp, FinNomp); 
+                System.out.println("nom:"+nomp);
+                int DebutPrenomp=UserL.indexOf("prenom=")+7;
+                int FinPrenomp=UserL.indexOf(", type");
+                String prenomp = UserL.substring(DebutPrenomp, FinPrenomp); 
+                System.out.println("prenom:"+prenomp);
+                
+                int DebutTypep=UserL.indexOf("type=")+5;
+                int FinTypep=UserL.indexOf(", numtel");
+                String typep = UserL.substring(DebutTypep, FinTypep); 
+                System.out.println("type:"+typep);
+                
+                int DebutNump=UserL.indexOf("numtel=")+7;
+                int FinNump=UserL.indexOf(", cin");
+                String numTelp = UserL.substring(DebutNump, DebutNump+8); 
+                System.out.println(numTelp);
+                User patient= new User(newUserLIdp, nomp, prenomp, null, typep, numTelp, "0");
+                
+
+                float idFloat = Float.parseFloat(obj.get("id").toString());
+                int id=(int) idFloat;
+                boolean isAccepted=Boolean.parseBoolean(obj.get("isAccepted").toString());
+                String datehr=obj.get("datehr").toString();
+                int finDate=datehr.indexOf("T");
+                String date=datehr.substring(0,finDate);
+                System.out.println(date);
+                String hr=datehr.substring(finDate+1,datehr.indexOf("+"));
+                System.out.println(hr);
+                Consultation consultation= new Consultation(id, isAccepted ,date,hr, medecin, patient);
+
+                consultations.add(consultation);
+            }
+            
+             //Parcourir la liste des tâches Json
+           for(int i=0;i<consultations.size();i++){
+                System.out.println(consultations.get(i));
+            }
+        } catch (IOException ex) {
+            
+        }
+        return consultations;
+    }
+        public ArrayList<Consultation> getAllPatient(/*Question t*/){
+        String url = Statics.BASE_URL+"/afficher-consultation-patient?idUser=6"/*+t.getId()*/;
+        con.setUrl(url);
+        con.setPost(false);
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                consultations = parseQuestions(new String(con.getResponseData()));
+                con.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        return consultations;
+    }
+        public ArrayList<Consultation> getAllMedecin(/*Question t*/){
+        String url = Statics.BASE_URL+"/afficher-consultation-medecin?idUser=6"/*+t.getId()*/;
+        con.setUrl(url);
+        con.setPost(false);
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                consultations = parseQuestions(new String(con.getResponseData()));
+                con.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        return consultations;
+    }
 }
