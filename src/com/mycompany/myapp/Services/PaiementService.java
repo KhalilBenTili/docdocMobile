@@ -51,7 +51,7 @@ public class PaiementService {
     
     public boolean ajoutPaiement(Paiement p){
         String url = Statics.BASE_URL+"/paiement/addJSON?nom="+p.getNom()+"&prenom="+p.getPrenom()+"&email="+p.getEmail()+"&prix="+p.getPrix()+"&adresse="+p.getAdresse()+"&numero="+p.getNumero()+"&status="+p.getStatus()+"&type="+p.getType()+"&userid="+p.getUserid();
-        req.setUrl(url);;
+        req.setUrl(url);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -111,7 +111,35 @@ public class PaiementService {
         NetworkManager.getInstance().addToQueueAndWait(req);
         return paiements;
     }
- 
+    
+      public ArrayList<Paiement> RechercheNom(String nom){
+        String url = Statics.BASE_URL+"/paiement/recherchePaiementMobile/"+nom;
+        req.setUrl(url);
+        req.setPost(false);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                paiements = parsePaiements(new String(req.getResponseData()));
+                req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return paiements;
+    }
+      
+        public Boolean SupprimerPaiement(Paiement p){
+        String url = Statics.BASE_URL+"/deletePaiementMobile/"+p.getId();
+        req.setUrl(url);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200;
+                req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return resultOK;
+    }
     
     
 }

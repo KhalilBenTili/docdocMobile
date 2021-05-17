@@ -10,6 +10,7 @@ import com.codename1.ui.Form;
 import com.codename1.ui.layouts.BoxLayout;
 import com.mycompany.myapp.Gui.alaa.AddPaiement;
 import com.mycompany.myapp.Gui.alaa.ListPaiement;
+import com.mycompany.myapp.gui.anas.HomeForm;
 
 /**
  * GUI builder created Form
@@ -34,11 +35,11 @@ public class Home extends Form {
         setTitle("Home");
         setLayout(BoxLayout.y());
        
-        Button btnAddPayement = new Button("Ajouter Paiement");
-        Button btnListPayement = new Button("Afficher Paiement");
-        btnAddPayement.addActionListener(e-> new AddPaiement(current).show());
+        Button btnListPayement = new Button("Paiement");
+        Button btnProduit = new Button("Produit");
         btnListPayement.addActionListener(e-> new ListPaiement(current).show());
-        addAll(btnAddPayement,btnListPayement);
+        btnProduit.addActionListener(e-> new HomeForm().show());
+        addAll(btnListPayement,btnProduit);
     }// </editor-fold>
 
 //-- DON'T EDIT ABOVE THIS LINE!!!
