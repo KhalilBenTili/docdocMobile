@@ -5,7 +5,10 @@
  */
 package com.mycompany.myapp;
 
+import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
+import com.codename1.ui.Image;
+import com.codename1.ui.Toolbar;
 import com.codename1.ui.layouts.BoxLayout;
 
 /**
@@ -16,9 +19,7 @@ import com.codename1.ui.layouts.BoxLayout;
 public class Fixed extends Form {
 
     public Fixed() {
-       setTitle("DocDoc");
-       setLayout(BoxLayout.y());
-      
+     
     }
     
     

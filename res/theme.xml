@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resource majorVersion="1" minorVersion="11" useXmlUI="false">
+    <image name="docdoc.png" type="multi"  />
+    <image name="logo.png"  />
+    <image name="logo.png 1" type="multi"  />
+    <image name="pizza-icon.png"  />
+    <theme name="Theme">
+        <val key="@includeNativeBool" value="true" />
+        <val key="SideCommand.align" value="1" />
+        <val key="SideCommand.bgColor" value="263138" />
+        <border key="SideCommand.border" type="empty" />
+        <val key="SideCommand.fgColor" value="ffffff" />
+        <font key="SideCommand.font" type="ttf" face="0" style="0" size="0" name="native:MainLight" family="native:MainLight" sizeSettings="3" actualSize="3.0" />
+        <val key="SideCommand.margin" value="0.0,1.0,0.0,0.0" />
+        <val key="SideCommand.padUnit" value="2,2,2,2" />
+        <val key="SideCommand.padding" value="3.0,3.0,3.0,3.0" />
+        <val key="SideCommand.textDecoration" value="0" />
+        <val key="SideCommand.transparency" value="255" />
+        <val key="SideNavigationPanel.bgColor" value="ffffff" />
+        <val key="SideNavigationPanel.transparency" value="255" />
+        <val key="SidemenuTagline.bgColor" value="cfa1" />
+        <val key="SidemenuTagline.fgColor" value="cfa1" />
+        <font key="SidemenuTagline.font" type="ttf" face="0" style="0" size="0" name="native:ItalicBold" family="native:ItalicBold" sizeSettings="3" actualSize="5.0" />
+        <val key="SidemenuTagline.margin" value="0.0,1.0,0.0,0.0" />
+        <val key="SidemenuTagline.padding" value="1.0,0.0,0.0,0.0" />
+        <val key="SidemenuTagline.textDecoration" value="0" />
+        <val key="StatusBarSideMenu.padding" value="0.0,0.0,0.0,0.0" />
+    </theme>
+</resource>
