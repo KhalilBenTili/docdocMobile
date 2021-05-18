@@ -114,7 +114,7 @@ public class QuestionService {
                 System.out.println(UserL);
                 int finUId =UserL.indexOf(".");
                 String newUserLId = UserL.substring(4, finUId); 
-                System.out.println(newUserLId);
+                System.out.println("hedhi el new user id: "+newUserLId);
                 int DebutNom=UserL.indexOf("nom=")+4;
                 int FinNom=UserL.indexOf(", prenom");
                 String nom = UserL.substring(DebutNom, FinNom); 
@@ -143,8 +143,9 @@ public class QuestionService {
                 int FinCin=UserL.indexOf("}");
                 String cin = UserL.substring(DebutCin, FinCin); 
                 System.out.println(cin);                
-                User u= new User(finUId, nom, prenom, email, type, numTel, cin);
-                p.setUser(u);
+                User u= new User(newUserLId, nom, prenom, email, type, numTel, cin);
+                // Float idUser=Float.parseFloat(newUserLId);
+                u.setId((int)Float.parseFloat(newUserLId));
                 
                 
                 //categorieMedicale affectation
@@ -171,6 +172,7 @@ public class QuestionService {
                 p.setIsTreated(false);
                 p.setIsNameShown(false);
                 p.setIsAntMed(false);
+                p.setUser(u);
                 //Ajouter la tâche extraite de la réponse Json à la liste
                 questions.add(p);
             }

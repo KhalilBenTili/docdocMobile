@@ -118,6 +118,7 @@ public class ReponseService {
                 System.out.println(cin); */
                 String cin="0";
                 User u= new User(finUId, nom, prenom, null, type, numTel, cin);
+                u.setId((int)Float.parseFloat(newUserLId));
                 //p.setUser(u);
                 
 
@@ -150,8 +151,8 @@ public class ReponseService {
         }
         return reponses;
     }
-        public ArrayList<Reponse> getAll(/*Question t*/){
-        String url = Statics.BASE_URL+"/afficher-reponses-par-question-json?id=2"/*+t.getId()*/;
+        public ArrayList<Reponse> getAll(Question t){
+        String url = Statics.BASE_URL+"/afficher-reponses-par-question-json?id="+t.getId();
         con.setUrl(url);
         con.setPost(false);
         con.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -163,6 +164,19 @@ public class ReponseService {
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
         return reponses;
+    }
+                    public boolean delete(Reponse t) {
+        String url = Statics.BASE_URL + "/delete-reponse-json?id=" + t.getId();
+        con.setUrl(url);
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = con.getResponseCode() == 200; //Code HTTP 200 OK
+                con.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        return resultOK;
     }
         
         

@@ -108,6 +108,19 @@ public class categorieMedicaleService {
         NetworkManager.getInstance().addToQueueAndWait(con);
         return CategorieMedicales;
     }
+            public boolean delete(CategorieMedicale t) {
+        String url = Statics.BASE_URL + "/delete-catMed-json?id=" + t.getId();
+        con.setUrl(url);
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = con.getResponseCode() == 200; //Code HTTP 200 OK
+                con.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        return resultOK;
+    }
     
     
 }

@@ -112,7 +112,7 @@ public class ConsultationService {
                 
                 //user patient affectation
                 String UserL =obj.get("user").toString();
-                System.out.println(UserL);
+                System.out.println("haw el patient"+UserL);
                 int finUIdp =UserL.indexOf(".");
                 String newUserLIdp = UserL.substring(4, finUIdp); 
                 System.out.println(newUserLIdp);
@@ -134,8 +134,13 @@ public class ConsultationService {
                 int FinNump=UserL.indexOf(", cin");
                 String numTelp = UserL.substring(DebutNump, DebutNump+8); 
                 System.out.println(numTelp);
-                User patient= new User(newUserLIdp, nomp, prenomp, null, typep, numTelp, "0");
                 
+                int DebutEmail=UserL.indexOf("email=")+6;
+                int FinEmail=UserL.indexOf(", nom");
+                String email = UserL.substring(DebutEmail,FinEmail); 
+                System.out.println(email);
+                 
+                User patient= new User(newUserLIdp, nomp, prenomp, null, "patient", numTelp, "0");                
 
                 float idFloat = Float.parseFloat(obj.get("id").toString());
                 int id=(int) idFloat;
@@ -146,22 +151,27 @@ public class ConsultationService {
                 System.out.println(date);
                 String hr=datehr.substring(finDate+1,datehr.indexOf("+"));
                 System.out.println(hr);
+                patient.setPrenom(prenomp);
+                patient.setNom(nomp);
+                patient.setType("patient");
+                patient.setEmail(email); 
                 Consultation consultation= new Consultation(id, isAccepted ,date,hr, medecin, patient);
+                
 
                 consultations.add(consultation);
             }
             
              //Parcourir la liste des tâches Json
            for(int i=0;i<consultations.size();i++){
-                System.out.println(consultations.get(i));
+               // System.out.println(consultations.get(i));
             }
         } catch (IOException ex) {
             
         }
         return consultations;
     }
-        public ArrayList<Consultation> getAllPatient(/*Question t*/){
-        String url = Statics.BASE_URL+"/afficher-consultation-patient?idUser=6"/*+t.getId()*/;
+        public ArrayList<Consultation> getAllPatient(User u){
+        String url = Statics.BASE_URL+"/afficher-consultation-patient?idUser="+u.getId();
         con.setUrl(url);
         con.setPost(false);
         con.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -174,8 +184,8 @@ public class ConsultationService {
         NetworkManager.getInstance().addToQueueAndWait(con);
         return consultations;
     }
-        public ArrayList<Consultation> getAllMedecin(/*Question t*/){
-        String url = Statics.BASE_URL+"/afficher-consultation-medecin?idUser=6"/*+t.getId()*/;
+        public ArrayList<Consultation> getAllMedecin(User u){
+        String url = Statics.BASE_URL+"/afficher-consultation-medecin?idUser="+u.getId();
         con.setUrl(url);
         con.setPost(false);
         con.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -187,5 +197,18 @@ public class ConsultationService {
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
         return consultations;
+    }
+                    public boolean delete(Consultation t) {
+        String url = Statics.BASE_URL + "/supp-consultation-json?id=" + t.getId();
+        con.setUrl(url);
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = con.getResponseCode() == 200; //Code HTTP 200 OK
+                con.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        return resultOK;
     }
 }

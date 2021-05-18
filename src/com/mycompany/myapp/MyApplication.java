@@ -14,8 +14,14 @@ import java.io.IOException;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.io.NetworkEvent;
 import com.mycompany.myapp.Entities.CategorieMedicale;
+import com.mycompany.myapp.Entities.Consultation;
 import com.mycompany.myapp.Entities.Question;
+import com.mycompany.myapp.Entities.User;
+import com.mycompany.myapp.Gui.zohra.AfficherConsultationPatient;
 import com.mycompany.myapp.Gui.zohra.AfficherToutesLesQuestions;
+import com.mycompany.myapp.Gui.zohra.ListeCategorieMedicale;
+import com.mycompany.myapp.Gui.zohra.ListeConsultation;
+import com.mycompany.myapp.Gui.zohra.ModifierCategorieMedicale;
 import com.mycompany.myapp.Gui.zohra.homeQuestion;
 import com.mycompany.myapp.Services.ConsultationService;
 import com.mycompany.myapp.Services.ReponseService;
@@ -62,15 +68,29 @@ public class MyApplication {
         Form hi = new Form("Hi World", BoxLayout.y());
         hi.add(new Label("Hi World"));
         h.show();*/
-        /*Question u= new Question(); 
-        new AfficherToutesLesQuestions(u).show();*/
+        
         
         /*categorieMedicaleService c=new categorieMedicaleService();
         c.getAll();*/
        /* ReponseService r = new ReponseService();
         r.getAll();*/
-       ConsultationService cons=new ConsultationService();
-       cons.getAllPatient();
+     /* ConsultationService cons=new ConsultationService();
+     cons.getAllPatient();*/
+     
+     User user=new User();
+     user.setId(1);
+     /*Question u= new Question(); 
+        new AfficherToutesLesQuestions(u,user).show();*/
+     CategorieMedicale c=new CategorieMedicale();
+      //new ListeCategorieMedicale(c).show();
+      new ModifierCategorieMedicale(c).show();
+     
+     
+       //Consultation consultation=new Consultation();
+       
+       
+      // new ListeConsultation(consultation,user).show();//medecin
+      // new AfficherConsultationPatient(consultation,user).show(); //patient
         
     }
 

@@ -23,6 +23,7 @@ import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.mycompany.myapp.Entities.Question;
+import com.mycompany.myapp.Entities.Reponse;
 import com.mycompany.myapp.Entities.User;
 /*import com.mycompany.myapp.entities.gui.MenuCategoryChambre;
 import com.mycompany.myapp.entities.services.ServiceAide;
@@ -40,7 +41,7 @@ import java.util.Date;
 public class AfficherToutesLesQuestions extends Form {
         Form current;
 
-        public AfficherToutesLesQuestions(Question u) {
+        public AfficherToutesLesQuestions(Question u, User us) {
         setTitle("Liste des questions");
        
 
@@ -61,39 +62,63 @@ public class AfficherToutesLesQuestions extends Form {
                             ct.add(ldetails);
                             ct.add(lSymptomes);
                             ct.add(ldusercat);
+                                Button afficher = new Button("Afficher");
+                                 afficher.addActionListener(new ActionListener() {
+                                            @Override
+                            public void actionPerformed(ActionEvent evt) { 
+                                Reponse r= new Reponse();
+                                  new AfficherUneQuestion(r,fi,us).show();
+                            }
+                        });
+                                ct.add(afficher);
                             
-                           
                             Button Supp = new Button("Supprimer");
                             Button modfier = new Button("Modfier");
+                             /*ct.add(modfier);
+                       ct.add(Supp);*/
+                       
+                            Supp.setEnabled(false);
+                            modfier.setEnabled(false);
+                                 System.out.println("ahawa el id mta3 user question"+fi.getUser().getId());
+                           if(fi.getUser().getId()==us.getId())
+                           {
+                            
+                            Supp.setEnabled(true);
+                            modfier.setEnabled(true);
+                           
+                            
                              modfier.addActionListener(new ActionListener() {
                                             @Override
-            public void actionPerformed(ActionEvent evt) {              
-                if (Dialog.show("Confirmation", "Voulez vous Modifier cette question ?", "Modifier ", "Annuler")) {
-                             new EditQuestion(current, fi).show();
-            }    
-            }
-        });
-                            Supp.addActionListener(new ActionListener() {
-                                            @Override
-            public void actionPerformed(ActionEvent evt) {              
-                if (Dialog.show("Confirmation", "Voulez vous Supprimer cette question ?", "Supprimer", "Annuler")) {
-                Question t = new Question(fi.getId());
-                        if( QuestionService.getInstance().delete(t)){
-                            {
-                                Dialog.show("Success","supprimer",new Command("OK"));
-               
-                                new AfficherToutesLesQuestions(u).show();
+                            public void actionPerformed(ActionEvent evt) {              
+                                if (Dialog.show("Confirmation", "Voulez vous Modifier cette question ?", "Modifier ", "Annuler")) {
+                                             new EditQuestion(current, fi).show();
+                            }    
                             }
-                   
-                }
-            }    
-            }
-        });
+                        });
+                            Supp.addActionListener(new ActionListener() {
+                                                            @Override
+                            public void actionPerformed(ActionEvent evt) {              
+                                if (Dialog.show("Confirmation", "Voulez vous Supprimer cette question ?", "Supprimer", "Annuler")) {
+                                Question t = new Question(fi.getId());
+                                        if( QuestionService.getInstance().delete(t)){
+                                            {
+                                                Dialog.show("Success","supprimer",new Command("OK"));
+
+                                                new AfficherToutesLesQuestions(u,us).show();
+                                            }
+
+                                }
+                            }    
+                            }
+                        });
+                           }
+                           
                        ct.add(modfier);
                        ct.add(Supp);
                        Label separator = new Label("","Separator");
                        ct.add(separator);
-                       add(ct);
+
+                            add(ct);
                              }
         //Tool Bar
        // getToolbar().addCommandToSideMenu("Home", null, e -> new MenuCategoryChambre().show());
