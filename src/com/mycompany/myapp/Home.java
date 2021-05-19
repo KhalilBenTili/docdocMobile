@@ -10,6 +10,11 @@ import com.codename1.ui.Form;
 import com.codename1.ui.layouts.BoxLayout;
 import com.mycompany.myapp.Gui.alaa.AddPaiement;
 import com.mycompany.myapp.Gui.alaa.ListPaiement;
+import com.mycompany.myapp.Gui.wael.AddReclamation;
+import com.mycompany.myapp.Gui.wael.AddUser;
+import com.mycompany.myapp.Gui.wael.ListMedecin;
+import com.mycompany.myapp.Gui.wael.ListPharamcien;
+import com.mycompany.myapp.Gui.wael.Login;
 import com.mycompany.myapp.gui.anas.HomeForm;
 
 /**
@@ -35,11 +40,21 @@ public class Home extends Form {
         setTitle("Home");
         setLayout(BoxLayout.y());
        
+         Button btnLoginUser = new Button("Login");
+        Button btnAddUser = new Button("Inscription");
         Button btnListPayement = new Button("Paiement");
         Button btnProduit = new Button("Produit");
+        Button btnListMedecin = new Button("Afficher Medecins");
+        Button btnListPharamcie = new Button("Afficher Pharamcie");
+        Button btnAddReclamation = new Button("Ajouter Reclamation");
+        btnLoginUser.addActionListener(e-> new Login(current).show());
+        btnAddUser.addActionListener(e-> new AddUser(current).show());
         btnListPayement.addActionListener(e-> new ListPaiement(current).show());
         btnProduit.addActionListener(e-> new HomeForm().show());
-        addAll(btnListPayement,btnProduit);
+        btnListMedecin.addActionListener(e-> new ListMedecin(current).show());
+        btnListPharamcie.addActionListener(e-> new ListPharamcien(current).show());
+        btnAddReclamation.addActionListener(e-> new AddReclamation(current).show());
+        addAll(btnLoginUser,btnAddUser,btnListPayement,btnProduit,btnListMedecin,btnListPharamcie,btnAddReclamation);
     }// </editor-fold>
 
 //-- DON'T EDIT ABOVE THIS LINE!!!

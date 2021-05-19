@@ -110,15 +110,15 @@ public class ListProduitForm extends Form{
         });
         btnModifier.addActionListener(e-> new EditProduitForm(current,p).show());
         
-        
+        Container C3 = new Container(new BoxLayout(BoxLayout.X_AXIS));
+
         C1.add(titre);
         C1.add(description);
         C1.add(prix);
-        C1.add(btnSupprimer);
         C1.add(btnModifier);
+        C1.add(btnSupprimer);
         C1.add(AjouterPaiement);
         C1.add(sep);
-        
         C2.add(C1);
         add(C2);
 
