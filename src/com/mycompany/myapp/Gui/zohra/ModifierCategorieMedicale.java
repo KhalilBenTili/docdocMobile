@@ -29,7 +29,7 @@ public class ModifierCategorieMedicale extends Form{
     TextField tfTitre= new TextField("","Titre");
     Button btnAdd= new Button("Modifier ");
     public ModifierCategorieMedicale (CategorieMedicale u) {
-         setTitle("Ajouter Categorie Medicale");
+         setTitle("Modifier Categorie Medicale");
         
         
         
@@ -49,6 +49,7 @@ public class ModifierCategorieMedicale extends Form{
                 {
                     
                     Dialog.show("Success","Modifiée!",new Command("OK"));
+                    new ListeCategorieMedicale(u).show();
                 }
                else
                 {

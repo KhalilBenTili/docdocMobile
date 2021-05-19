@@ -38,7 +38,7 @@ public class ListeConsultation extends Form{
                             Container ct = new Container(BoxLayout.y());
                             Label lTitre = new Label(fi.getPatientUser().getNom()+" "+fi.getPatientUser().getPrenom()+" a demandé une consultation avec vous ayant comme numero de telephone"+fi.getPatientUser().getNumtel(),"RedLabel");
                             Label ldate = new Label("pour le "+fi.getDate()+"a "+fi.getHr(),"RedLabel");
-                            lTitre.getAllStyles().setFgColor(0xf15f5f);
+                            lTitre.getAllStyles().setFgColor(0x4ed9d9);
                             ct.add(lTitre);   
                             ct.add(ldate);
                            

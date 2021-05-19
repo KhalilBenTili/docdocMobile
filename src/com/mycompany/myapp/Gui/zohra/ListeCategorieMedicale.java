@@ -35,6 +35,8 @@ public class ListeCategorieMedicale extends Form {
         //TextField isAnsw= new TextField("","status: 0 - 1");
         
         add(btnAdd);
+        
+        
         btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt)
@@ -64,10 +66,13 @@ public class ListeCategorieMedicale extends Form {
                         categorieMedicaleService sa =new categorieMedicaleService();
                             questions=sa.getAll();
                              for (CategorieMedicale fi : questions) {
-                            Container ct = new Container(BoxLayout.y());
-                            Label lTitre = new Label("Titre : "+fi.getNom(),"RedLabel");
-                            lTitre.getAllStyles().setFgColor(0xf15f5f);
-                            ct.add(lTitre);                            
+                            Container ct = new Container(BoxLayout.x());
+                            
+                            
+                            Label lTitre = new Label(fi.getNom());
+                            //lTitre.getAllStyles().setFgColor(0xf15f5f);
+                               
+                            ct.add(lTitre); 
                            
                             Button Supp = new Button("Supprimer");
                             Button modfier = new Button("Modfier");
@@ -98,11 +103,13 @@ public class ListeCategorieMedicale extends Form {
             }    
             }
         });
+                       
+                       Label separator = new Label("","Separator");
+                       
+                       add(ct);
+                       
                        ct.add(modfier);
                        ct.add(Supp);
-                       Label separator = new Label("","Separator");
-                       ct.add(separator);
-                       add(ct);
                              }
         //Tool Bar
        // getToolbar().addCommandToSideMenu("Home", null, e -> new MenuCategoryChambre().show());

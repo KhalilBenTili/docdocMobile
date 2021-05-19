@@ -48,6 +48,16 @@ public class AfficherToutesLesQuestions extends Form {
           Container co=new Container(BoxLayout.xCenter());;
                     ArrayList <Question> questions = new ArrayList();
                         QuestionService sa =new QuestionService();
+                        Button poser= new Button("Poser une Question");
+                            add(poser);
+                             poser.addActionListener(new ActionListener() {
+                                            @Override
+                            public void actionPerformed(ActionEvent evt) { 
+                                Reponse r= new Reponse();
+                                  new PoserQuestion(us,u).show();
+                            }
+                        });
+                            
                             questions=sa.getAll();
                              for (Question fi : questions) {
                             Container ct = new Container(BoxLayout.y());
@@ -56,7 +66,6 @@ public class AfficherToutesLesQuestions extends Form {
                            // Label lUser = new Label("cette question est ajoutée par: "+fi.getUser().getNom()+" "+fi.getUser().getPrenom(),"SmallLabel");
                             Label lSymptomes = new Label("Symptomes : "+fi.getSymptomes(),"RedLabel");
                             Label ldetails = new Label("Details poids: "+fi.getPoids()+" Taille: "+fi.getTaille(),"SmallLabel");
-                            lTitre.getAllStyles().setFgColor(0xf15f5f);
                             ct.add(lTitre);
                             //ct.add(lUser);
                             ct.add(ldetails);
@@ -74,6 +83,7 @@ public class AfficherToutesLesQuestions extends Form {
                             
                             Button Supp = new Button("Supprimer");
                             Button modfier = new Button("Modfier");
+
                              /*ct.add(modfier);
                        ct.add(Supp);*/
                        

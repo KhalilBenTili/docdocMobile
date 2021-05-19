@@ -39,7 +39,6 @@ public class AfficherConsultationPatient extends Form{
                             Container ct = new Container(BoxLayout.y());
                             Label lTitre = new Label("Vous avez demandé une consultation avec Dr. "+fi.getMedecinUser().getNom()+" "+fi.getMedecinUser().getPrenom(),"RedLabel");
                             Label ldate = new Label("pour le "+fi.getDate()+"a "+fi.getHr(),"RedLabel");
-                            lTitre.getAllStyles().setFgColor(0xf15f5f);
                             ct.add(lTitre);   
                             ct.add(ldate);
                            

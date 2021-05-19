@@ -50,7 +50,6 @@ public class AfficherUneQuestion extends Form{
                            // Label lUser = new Label("cette question est ajoutée par: "+fi.getUser().getNom()+" "+fi.getUser().getPrenom(),"SmallLabel");
                             Label lSymptomesq = new Label("Symptomes : "+q.getSymptomes(),"RedLabel");
                             Label ldetailsq = new Label("Details poids: "+q.getPoids()+" Taille: "+q.getTaille(),"SmallLabel");
-                            lTitreq.getAllStyles().setFgColor(0xf15f5f);
                             questionCo.add(lTitreq);
                             //ct.add(lUser);
                             questionCo.add(ldetailsq);
@@ -118,7 +117,7 @@ public class AfficherUneQuestion extends Form{
                             Container ct = new Container(BoxLayout.y());
                             Label lTitre = new Label("Titre : "+fi.getDescription(),"RedLabel");
                             Label lUser = new Label("nom utilisateur : "+fi.getUser().getNom()+" "+fi.getUser().getPrenom(),"RedLabel");
-                            lTitre.getAllStyles().setFgColor(0xf15f5f);
+                            lUser.getAllStyles().setFgColor(0x4ed9d9 );
                             ct.add(lUser);                            
                             ct.add(lTitre);
                             Button Supp = new Button("Supprimer");

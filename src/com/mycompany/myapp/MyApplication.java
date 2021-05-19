@@ -85,19 +85,38 @@ public class MyApplication {
      cons.getAllPatient();*/
      
      User user=new User();
-     user.setId(1);
-     Question u= new Question();
-     Reponse r = new Reponse();
-       new AfficherToutesLesQuestions(u,user).show();
-       /*CategorieMedicale c=new CategorieMedicale();
-      new ListeCategorieMedicale(c).show();*/
-      //new ModifierCategorieMedicale(c).show();
+     user.setId(6);
+     user.setType("medecin");
+     Question question= new Question();
+     Reponse reponse = new Reponse();
+     CategorieMedicale categorieMedicale=new CategorieMedicale();
+     Consultation consultation=new Consultation();
+     
+     
+      //ki nenzel aala question fel menu
+     new AfficherToutesLesQuestions(question,user).show();
+     
+     
+     
+     //ki nenzel aala consultation
+    /* if(user.getType()=="patient")
+     {
+          new ListeConsultation(consultation,user).show();
+     }
+     else
+     {
+         new AfficherConsultationPatient(consultation,user).show();
+     }*/
+      
+     //ki nenzel aala categorieMedicale
+   // new ListeCategorieMedicale(categorieMedicale).show();
+  
+
      
     
-      /* Consultation consultation=new Consultation();
+      /* 
  new AjouterConsultation(consultation);*/
-      // new ListeConsultation(consultation,user).show();*///medecin
-       //new AfficherConsultationPatient(consultation,user).show(); //patient
+
        //new PoserQuestion(user,u).show();
         
     }
