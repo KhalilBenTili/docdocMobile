@@ -19,6 +19,7 @@ import com.codename1.ui.FontImage;
 import com.codename1.ui.Image;
 import com.codename1.ui.TextField;
 import com.codename1.ui.layouts.BorderLayout;
+import com.mycompany.myapp.Gui.Rihab.ListArticle;
 import com.mycompany.myapp.Gui.khalil.Services;
 
 /**
@@ -72,7 +73,7 @@ public class MyApplication {
        tb.addMaterialCommandToSideMenu("Medecins",FontImage.MATERIAL_ACCOUNT_BOX,e->{});
        tb.addMaterialCommandToSideMenu("Pharmacie",FontImage.MATERIAL_ACCOUNT_BOX,e->{});
        tb.addMaterialCommandToSideMenu("Medicaments",FontImage.MATERIAL_SCHOOL,e->{});
-        tb.addMaterialCommandToSideMenu("Blog",FontImage.MATERIAL_SCHOOL,e->{});
+        tb.addMaterialCommandToSideMenu("Blog",FontImage.MATERIAL_SCHOOL,e-> new ListArticle(current).show());
          tb.addMaterialCommandToSideMenu("Forum",FontImage.MATERIAL_SCHOOL,e->{});
        tb.addMaterialCommandToSideMenu("Paiements",FontImage.MATERIAL_SETTINGS,e->{});
       tb.addMaterialCommandToSideMenu("A propos",FontImage.MATERIAL_INFO,e->{});

@@ -1,7 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <resource majorVersion="1" minorVersion="11" useXmlUI="false">
+    <image name="articleContainer.borderBottom_1.png" type="multi"  />
+    <image name="articleContainer.borderBottom_2.png" type="multi"  />
+    <image name="articleContainer.borderBottom_3.png" type="multi"  />
+    <image name="articleContainer.borderBottom_4.png" type="multi"  />
+    <image name="articleContainer.borderBottomL_1.png" type="multi"  />
+    <image name="articleContainer.borderBottomL_2.png" type="multi"  />
+    <image name="articleContainer.borderBottomL_3.png" type="multi"  />
+    <image name="articleContainer.borderBottomL_4.png" type="multi"  />
+    <image name="articleContainer.borderBottomR_1.png" type="multi"  />
+    <image name="articleContainer.borderBottomR_2.png" type="multi"  />
+    <image name="articleContainer.borderBottomR_3.png" type="multi"  />
+    <image name="articleContainer.borderBottomR_4.png" type="multi"  />
+    <image name="articleContainer.borderCenter_1.png" type="multi"  />
+    <image name="articleContainer.borderCenter_2.png" type="multi"  />
+    <image name="articleContainer.borderCenter_3.png" type="multi"  />
+    <image name="articleContainer.borderCenter_4.png" type="multi"  />
+    <image name="articleContainer.borderLeft_1.png" type="multi"  />
+    <image name="articleContainer.borderLeft_2.png" type="multi"  />
+    <image name="articleContainer.borderLeft_3.png" type="multi"  />
+    <image name="articleContainer.borderLeft_4.png" type="multi"  />
+    <image name="articleContainer.borderRight_1.png" type="multi"  />
+    <image name="articleContainer.borderRight_2.png" type="multi"  />
+    <image name="articleContainer.borderRight_3.png" type="multi"  />
+    <image name="articleContainer.borderRight_4.png" type="multi"  />
+    <image name="articleContainer.borderTop_1.png" type="multi"  />
+    <image name="articleContainer.borderTop_2.png" type="multi"  />
+    <image name="articleContainer.borderTop_3.png" type="multi"  />
+    <image name="articleContainer.borderTop_4.png" type="multi"  />
+    <image name="articleContainer.borderTopL_1.png" type="multi"  />
+    <image name="articleContainer.borderTopL_2.png" type="multi"  />
+    <image name="articleContainer.borderTopL_3.png" type="multi"  />
+    <image name="articleContainer.borderTopL_4.png" type="multi"  />
+    <image name="articleContainer.borderTopR_1.png" type="multi"  />
+    <image name="articleContainer.borderTopR_2.png" type="multi"  />
+    <image name="articleContainer.borderTopR_3.png" type="multi"  />
+    <image name="articleContainer.borderTopR_4.png" type="multi"  />
     <image name="docdoc.png" type="multi"  />
+    <image name="done.png"  />
     <image name="logo.png"  />
     <image name="logo.png 1" type="multi"  />
     <image name="pizza-icon.png"  />
@@ -50,5 +87,18 @@
         <val key="TextField.bgType" value="0" />
         <val key="Title.fgColor" value="00cfa1" />
         <font key="Title.font" type="ttf" face="0" style="1" size="0" name="native:ItalicBold" family="native:ItalicBold" sizeSettings="1" actualSize="12.0" />
+        <gradient key="articleContainer.bgGradient" color1="16777215" color2="16777215" posX="0.5" posY="0.5" radius="1.0" />
+        <val key="articleContainer.bgType" value="7" />
+        <border key="articleContainer.border" type="rounded" thickness="0.0" arcW="100" arcH="100" color="0" />
+        <val key="articleContainer.margin" value="25.0,25.0,25.0,25.0" />
+        <val key="articleContainer.padding" value="25.0,25.0,25.0,25.0" />
+        <val key="btnAjout.align" value="4" />
+        <gradient key="btnAjout.bgGradient" color1="38823" color2="38823" posX="0.5" posY="0.5" radius="1.0" />
+        <val key="btnAjout.bgType" value="7" />
+        <border key="btnAjout.border" type="rounded" thickness="0.0" arcW="50" arcH="50" color="16777215" />
+        <val key="btnAjout.fgColor" value="ffffff" />
+        <val key="btnAjout.margin" value="0.0,0.0,100.0,100.0" />
+        <val key="btnAjout.padding" value="25.0,25.0,25.0,25.0" />
+        <font key="labelTitre.font" type="system" face="0" style="1" size="16" />
     </theme>
 </resource>
