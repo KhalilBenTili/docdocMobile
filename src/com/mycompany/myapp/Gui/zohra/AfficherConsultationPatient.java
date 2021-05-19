@@ -50,7 +50,7 @@ public class AfficherConsultationPatient extends Form{
                                             @Override
             public void actionPerformed(ActionEvent evt) {              
                 if (Dialog.show("Confirmation", "Voulez vous Modifier cette demande de consultation ?", "Modifier ", "Annuler")) {
-                             //new EditQuestion(current, fi).show();
+                             new ModifierConsultation(fi,user);
             }    
             }
         });

@@ -52,10 +52,10 @@ public class ListeConsultation extends Form{
                 if (Dialog.show("Confirmation", "Voulez vous Accepter cette demande de consultation ?", "Oui", "Non")) {
                 Consultation t = new Consultation();
                 t.setId(fi.getId());
-                        if( /*ConsultationService.getInstance().delete(t)*/ true){
+                        if(ConsultationService.getInstance().Accepter(t)){
                             {
-                                Dialog.show("Success","supprimer",new Command("OK"));
-               
+                                
+                                Dialog.show("Success","Acceptée",new Command("OK"));
                                 new ListeConsultation(u,user).show();
                             }
                    

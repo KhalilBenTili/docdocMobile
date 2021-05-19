@@ -44,7 +44,7 @@ public class QuestionService {
         return instance;
     }
     
-    public void add(Question ev) {
+    public boolean add(Question ev) {
         
         ConnectionRequest con = new ConnectionRequest();// création d'une nouvelle demande de connexion 
         con.setUrl(Statics.BASE_URL+"/add-question-json?titre="+ev.getTitre()+"&symptomes="+ev.getSymptomes()+"&userid="+ev.getUser().getId()+"&catMedId="+ev.getCatMed().getId()+"&ant="+ev.isIsAntMed()+"&name="+ev.isIsNameShown()+"&isTreated="+ev.isIsTreated()+"&poids="+ev.getPoids()+"&taille="+ev.getTaille());
@@ -52,10 +52,12 @@ public class QuestionService {
 
        // Insertion de l'URL de notre demande de connexion
         con.addResponseListener((e) -> {
-            String str = new String(con.getResponseData());//Récupération de la réponse du serveur
+            String str = new String(con.getResponseData());
+            resultOK = con.getResponseCode() == 200;//Récupération de la réponse du serveur
             System.out.println(str);//Affichage de la réponse serveur sur la console
         });
         NetworkManager.getInstance().addToQueueAndWait(con);// Ajout de notre demande de connexion à la file d'attente du NetworkManager
+    return resultOK;
     }
     
     public boolean edit(Question t) {
@@ -103,7 +105,7 @@ public class QuestionService {
             
 
             for(Map<String,Object> obj : list){
-                
+                System.out.println(obj);
                 
                 //Création des tâches et récupération de leurs données
                 Question p = new Question();
@@ -167,11 +169,12 @@ public class QuestionService {
                 p.setTitre(obj.get("titre").toString());
                 p.setSymptomes(obj.get("symptomes").toString());
                 p.setPoids(10);
-                p.setTaille(11);
+                p.setTaille(13);
+                 
                 p.setIsAnswered(false);
-                p.setIsTreated(false);
+                p.setIsTreated(Boolean.parseBoolean(obj.get("isTreated").toString()));
                 p.setIsNameShown(false);
-                p.setIsAntMed(false);
+                p.setIsAntMed(Boolean.parseBoolean(obj.get("isAntMed").toString()));
                 p.setUser(u);
                 //Ajouter la tâche extraite de la réponse Json à la liste
                 questions.add(p);

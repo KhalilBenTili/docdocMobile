@@ -18,15 +18,45 @@ import com.mycompany.myapp.Entities.CategorieMedicale;
 import com.mycompany.myapp.Services.categorieMedicaleService;
 import java.util.ArrayList;
 import com.codename1.ui.Dialog;
+import com.codename1.ui.TextField;
 /**
  *
  * @author user
  */
 public class ListeCategorieMedicale extends Form {
     Form current;
+    TextField tfTitre= new TextField("","Titre");
+    Button btnAdd= new Button("ajouter");
 
         public ListeCategorieMedicale(CategorieMedicale u) {
         setTitle("Catégorie Médicale");
+        add(tfTitre);
+        
+        //TextField isAnsw= new TextField("","status: 0 - 1");
+        
+        add(btnAdd);
+        btnAdd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt)
+            {
+                u.setNom(tfTitre.getText());
+                categorieMedicaleService cs=new categorieMedicaleService();
+                
+                if(cs.add(u))
+                {
+                    Dialog.show("Success","Ajoutée!",new Command("OK"));
+                    new ListeCategorieMedicale(u).show();
+                }
+               else
+                {
+                    Dialog.show("Erreur","Erreur!",new Command("OK"));
+                }
+            }
+            
+        });
+        
+        
+        
        
 
           Container co=new Container(BoxLayout.xCenter());;
@@ -47,6 +77,7 @@ public class ListeCategorieMedicale extends Form {
             public void actionPerformed(ActionEvent evt) {              
                 if (Dialog.show("Confirmation", "Voulez vous Modifier cette categorie ?", "Modifier ", "Annuler")) {
                              //new EditQuestion(current, fi).show();
+                             new  ModifierCategorieMedicale (fi).show();
             }    
             }
         });
@@ -58,7 +89,7 @@ public class ListeCategorieMedicale extends Form {
                 t.setId(fi.getId());
                         if( categorieMedicaleService.getInstance().delete(t)){
                             {
-                                Dialog.show("Success","supprimer",new Command("OK"));
+                                Dialog.show("Success","supprimée",new Command("OK"));
                
                                 new ListeCategorieMedicale(u).show();
                             }

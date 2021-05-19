@@ -91,7 +91,7 @@ public class AfficherToutesLesQuestions extends Form {
                                             @Override
                             public void actionPerformed(ActionEvent evt) {              
                                 if (Dialog.show("Confirmation", "Voulez vous Modifier cette question ?", "Modifier ", "Annuler")) {
-                                             new EditQuestion(current, fi).show();
+                                             new ModifierQuestion( us,fi).show();
                             }    
                             }
                         });

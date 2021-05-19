@@ -42,7 +42,7 @@ public class ConsultationService {
         }
         return instance;
     }
-    public void add(Consultation ev) {
+    public boolean add(Consultation ev) {
         
         ConnectionRequest con = new ConnectionRequest();// création d'une nouvelle demande de connexion 
         con.setUrl(Statics.BASE_URL+"/add-consultation-json?date="+ev.getDate()+"&hr="+ev.getHr()+"&medid="+ev.getMedecinUser().getId()+"&pid="+ev.getPatientUser().getId());
@@ -50,9 +50,11 @@ public class ConsultationService {
        // Insertion de l'URL de notre demande de connexion
         con.addResponseListener((e) -> {
             String str = new String(con.getResponseData());//Récupération de la réponse du serveur
+            resultOK = con.getResponseCode() == 200;
             System.out.println(str);//Affichage de la réponse serveur sur la console
         });
         NetworkManager.getInstance().addToQueueAndWait(con);// Ajout de notre demande de connexion à la file d'attente du NetworkManager
+    return resultOK;
     }
         public boolean edit(Consultation t) {
         String url = Statics.BASE_URL +"/edit-consultation-json?id="+t.getId()+"&date="+t.getDate()+"&hr="+t.getHr(); //création de l'URL
@@ -66,7 +68,23 @@ public class ConsultationService {
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
         return resultOK;
+    } 
+        
+                public boolean Accepter(Consultation t) {
+        String url = Statics.BASE_URL +"/accepter-consultation-json?id="+t.getId(); //création de l'URL
+               con.setUrl(url);
+        con.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = con.getResponseCode() == 200; //Code HTTP 200 OK
+                con.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
+        return resultOK;
     }  
+        
+        
          public ArrayList<Consultation> parseQuestions(String jsonText){
         try {
             consultations=new ArrayList<>();

@@ -16,14 +16,21 @@ import com.codename1.io.NetworkEvent;
 import com.mycompany.myapp.Entities.CategorieMedicale;
 import com.mycompany.myapp.Entities.Consultation;
 import com.mycompany.myapp.Entities.Question;
+import com.mycompany.myapp.Entities.Reponse;
 import com.mycompany.myapp.Entities.User;
 import com.mycompany.myapp.Gui.zohra.AfficherConsultationPatient;
 import com.mycompany.myapp.Gui.zohra.AfficherToutesLesQuestions;
+import com.mycompany.myapp.Gui.zohra.AfficherUneQuestion;
+import com.mycompany.myapp.Gui.zohra.AjouterConsultation;
+import com.mycompany.myapp.Gui.zohra.CalendrierConsultation;
 import com.mycompany.myapp.Gui.zohra.ListeCategorieMedicale;
 import com.mycompany.myapp.Gui.zohra.ListeConsultation;
 import com.mycompany.myapp.Gui.zohra.ModifierCategorieMedicale;
+import com.mycompany.myapp.Gui.zohra.ModifierConsultation;
+import com.mycompany.myapp.Gui.zohra.PoserQuestion;
 import com.mycompany.myapp.Gui.zohra.homeQuestion;
 import com.mycompany.myapp.Services.ConsultationService;
+import com.mycompany.myapp.Services.QuestionService;
 import com.mycompany.myapp.Services.ReponseService;
 import com.mycompany.myapp.Services.categorieMedicaleService;
 
@@ -79,18 +86,19 @@ public class MyApplication {
      
      User user=new User();
      user.setId(1);
-     /*Question u= new Question(); 
-        new AfficherToutesLesQuestions(u,user).show();*/
-     CategorieMedicale c=new CategorieMedicale();
-      //new ListeCategorieMedicale(c).show();
-      new ModifierCategorieMedicale(c).show();
+     Question u= new Question();
+     Reponse r = new Reponse();
+       new AfficherToutesLesQuestions(u,user).show();
+       /*CategorieMedicale c=new CategorieMedicale();
+      new ListeCategorieMedicale(c).show();*/
+      //new ModifierCategorieMedicale(c).show();
      
-     
-       //Consultation consultation=new Consultation();
-       
-       
-      // new ListeConsultation(consultation,user).show();//medecin
-      // new AfficherConsultationPatient(consultation,user).show(); //patient
+    
+      /* Consultation consultation=new Consultation();
+ new AjouterConsultation(consultation);*/
+      // new ListeConsultation(consultation,user).show();*///medecin
+       //new AfficherConsultationPatient(consultation,user).show(); //patient
+       //new PoserQuestion(user,u).show();
         
     }
 

@@ -44,18 +44,21 @@ public class ReponseService {
         return instance;
     }
     
-        public void add(Reponse ev) {
+        public boolean add(Reponse ev, User u, Question q) {
         
         ConnectionRequest con = new ConnectionRequest();// création d'une nouvelle demande de connexion 
-        con.setUrl(Statics.BASE_URL+"add-reponse-json?description="+ev.getDescription()+"&userid="+ev.getUser().getId()+"&questionid="+ev.getQuestion().getId());
+        con.setUrl(Statics.BASE_URL+"/add-reponse-json?description="+ev.getDescription()+"&userid="+u.getId()+"&questionid="+q.getId());
 
        // Insertion de l'URL de notre demande de connexion
         con.addResponseListener((e) -> {
             String str = new String(con.getResponseData());//Récupération de la réponse du serveur
+            resultOK = con.getResponseCode() == 200; 
             System.out.println(str);//Affichage de la réponse serveur sur la console
         });
+        
         NetworkManager.getInstance().addToQueueAndWait(con);// Ajout de notre demande de connexion à la file d'attente du NetworkManager
-    }
+    return resultOK;
+        }
         
     public boolean edit(Reponse t) {
         String url = Statics.BASE_URL +"/edit-reponse-json?id="+t.getId()+"&description="+t.getDescription(); //création de l'URL

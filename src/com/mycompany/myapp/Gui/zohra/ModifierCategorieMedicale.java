@@ -26,18 +26,34 @@ import com.codename1.ui.TextField;
  */
 public class ModifierCategorieMedicale extends Form{
     Form current;
+    TextField tfTitre= new TextField("","Titre");
+    Button btnAdd= new Button("Modifier ");
     public ModifierCategorieMedicale (CategorieMedicale u) {
          setTitle("Ajouter Categorie Medicale");
-        TextField tfTitre= new TextField("","Titre");
+        
+        
+        
         //TextField isAnsw= new TextField("","status: 0 - 1");
-        Button btnAdd= new Button("ajouter");
+        add(tfTitre);
+        add(btnAdd);
+        tfTitre.setText(u.getNom());
         btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt)
             {
-                u.setNom(tfTitre.toString());
+                
+                
                 categorieMedicaleService cs=new categorieMedicaleService();
-                cs.add(u);
+                u.setNom(tfTitre.getText());
+                if(cs.edit(u))
+                {
+                    
+                    Dialog.show("Success","Modifiée!",new Command("OK"));
+                }
+               else
+                {
+                    Dialog.show("Erreur","Erreur!",new Command("OK"));
+                }
                 //Question q=new Question(catMed, user, titre, Symptomes, TOP, TOP, focusScrolling, focusScrolling, focusScrolling, focusScrolling)
             }
             

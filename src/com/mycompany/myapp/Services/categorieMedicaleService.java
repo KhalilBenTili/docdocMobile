@@ -36,7 +36,7 @@ public class categorieMedicaleService {
         }
         return instance;
     }
-    public void add(CategorieMedicale ev) {
+    public boolean add(CategorieMedicale ev) {
         
         ConnectionRequest con = new ConnectionRequest();// création d'une nouvelle demande de connexion 
         con.setUrl(Statics.BASE_URL+"/add-catMed-json?nom="+ev.getNom());
@@ -44,9 +44,11 @@ public class categorieMedicaleService {
        // Insertion de l'URL de notre demande de connexion
         con.addResponseListener((e) -> {
             String str = new String(con.getResponseData());//Récupération de la réponse du serveur
+             resultOK = con.getResponseCode() == 200;
             System.out.println(str);//Affichage de la réponse serveur sur la console
         });
         NetworkManager.getInstance().addToQueueAndWait(con);// Ajout de notre demande de connexion à la file d'attente du NetworkManager
+    return resultOK;
     }
     public boolean edit(CategorieMedicale t) {
         String url = Statics.BASE_URL +"/edit-catMed-json?id="+t.getId()+"&nom="+t.getNom();
