@@ -21,11 +21,22 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.mycompany.myapp.Entities.Commentaire;
+import com.mycompany.myapp.Entities.User;
 import com.mycompany.myapp.Entities.article;
+import com.mycompany.myapp.Gui.alaa.ListPaiement;
 import com.mycompany.myapp.Gui.khalil.Services;
+import com.mycompany.myapp.Gui.wael.AddReclamation;
+import com.mycompany.myapp.Gui.wael.ListMedecin;
+import com.mycompany.myapp.Gui.wael.ListPharamcien;
+import com.mycompany.myapp.Gui.wael.SessionManager;
+import com.mycompany.myapp.Gui.zohra.AfficherConsultationPatient;
+import com.mycompany.myapp.Gui.zohra.AfficherToutesLesQuestions;
+import com.mycompany.myapp.Gui.zohra.ListeCategorieMedicale;
+import com.mycompany.myapp.Gui.zohra.ListeConsultation;
 import com.mycompany.myapp.Home;
 import com.mycompany.myapp.Services.BlogService;
 import com.mycompany.myapp.Services.CommentaireService;
+import com.mycompany.myapp.gui.anas.HomeForm;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -39,22 +50,38 @@ public class ListArticle extends Form {
 
     public ListArticle(Form current) {
         super("La liste des articles.");
-    theme = UIManager.initFirstTheme("/theme");
-        addGUIs();
-         Toolbar tb=new Toolbar();
-
-      
-      TextField tf= new TextField();
-      tb.addMaterialCommandToSideMenu("Accueil",FontImage.MATERIAL_HOME,e->{new Home().show();});
-      tb.addMaterialCommandToSideMenu("Services",FontImage.MATERIAL_SCHOOL,e->{new Services(current).show();});
-       tb.addMaterialCommandToSideMenu("Medecins",FontImage.MATERIAL_ACCOUNT_BOX,e->{});
-       tb.addMaterialCommandToSideMenu("Pharmacie",FontImage.MATERIAL_ACCOUNT_BOX,e->{});
-       tb.addMaterialCommandToSideMenu("Medicaments",FontImage.MATERIAL_SCHOOL,e->{});
-        tb.addMaterialCommandToSideMenu("Blog",FontImage.MATERIAL_SCHOOL,e-> new ListArticle(current).show());
-         tb.addMaterialCommandToSideMenu("Forum",FontImage.MATERIAL_SCHOOL,e->{});
-       tb.addMaterialCommandToSideMenu("Paiements",FontImage.MATERIAL_SETTINGS,e->{});
-      tb.addMaterialCommandToSideMenu("A propos",FontImage.MATERIAL_INFO,e->{});
+   
        
+
+   //toolbar     
+      Toolbar tb=getToolbar();
+       theme = UIManager.initFirstTheme("/theme");
+      Image icon=theme.getImage("logo.png");
+      Container topBar=BorderLayout.east(new Label(icon));
+      topBar.add(BorderLayout.SOUTH,new Label("DOCDOC","SidemenuTagline"));
+      topBar.setUIID("SideCommand");      
+      User user=new User(SessionManager.getId(),SessionManager.getNom(),SessionManager.getPrenom(),SessionManager.getEmail(),SessionManager.getType());
+      tb.addComponentToSideMenu(topBar);
+      tb.addMaterialCommandToSideMenu("Accueil",FontImage.MATERIAL_HOME,e->{new Home().show();});
+      tb.addMaterialCommandToSideMenu("Services",FontImage.MATERIAL_SCHOOL,e->{new Services().show();});
+       tb.addMaterialCommandToSideMenu("Medecins",FontImage.MATERIAL_ACCOUNT_BOX,e-> new ListMedecin().show());
+       tb.addMaterialCommandToSideMenu("Pharmacie",FontImage.MATERIAL_ACCOUNT_BOX,e-> new ListPharamcien(current).show());
+      
+       tb.addMaterialCommandToSideMenu("Consultation",FontImage.MATERIAL_ACCOUNT_BOX,e->{  if(user.getType()=="medecin")
+     {
+          new ListeConsultation(user).show();
+     }
+       else
+     {
+         new AfficherConsultationPatient(user).show();
+     }});
+       tb.addMaterialCommandToSideMenu("Produits",FontImage.MATERIAL_SCHOOL,e-> new HomeForm().show());
+        tb.addMaterialCommandToSideMenu("Blog",FontImage.MATERIAL_SCHOOL,e-> new ListArticle(current).show());
+         tb.addMaterialCommandToSideMenu("Forum",FontImage.MATERIAL_SCHOOL,e->{new AfficherToutesLesQuestions(user).show();});
+          tb.addMaterialCommandToSideMenu("Catégorie Médicale",FontImage.MATERIAL_ACCOUNT_BOX,e->{new ListeCategorieMedicale().show();});
+       tb.addMaterialCommandToSideMenu("Paiements",FontImage.MATERIAL_SETTINGS,e->new ListPaiement(current).show());
+       tb.addMaterialCommandToSideMenu("Repport",FontImage.MATERIAL_SETTINGS,e-> new AddReclamation(current).show());
+      //endtoolbar    
     }
 
     private void addGUIs() {
