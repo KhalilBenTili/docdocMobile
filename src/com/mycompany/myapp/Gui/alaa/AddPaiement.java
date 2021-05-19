@@ -5,6 +5,7 @@
  */
 package com.mycompany.myapp.Gui.alaa;
 
+import com.codename1.components.ToastBar;
 import com.codename1.location.Location;
 import com.codename1.location.LocationManager;
 import com.codename1.messaging.Message;
@@ -55,14 +56,20 @@ public class AddPaiement extends Form {
                     try{
                         Paiement p = new Paiement(tfnom.getText(), tfprenom.getText(), tfadresse.getText(), tfemail.getText(),"Enligne", "Paid", Integer.parseInt(tfnumero.getText()),Double.parseDouble(String.valueOf(prix))  , 1);
                         if(PaiementService.getInstance().ajoutPaiement(p)){
+                            ToastBar.getInstance().setPosition(BOTTOM);
+                            ToastBar.Status status = ToastBar.getInstance().createStatus();
+                            status.setShowProgressIndicator(true);
+                            status.setMessage("Paiement ajouté avec succès");
+                            status.setExpires(10000);   
+                            status.show(); 
                             Message m = new Message("Paiement validé.\n"+
-"Salutation Madame/Monsieur,\n" +
-"C'est avec plaisir qu'on vous écrit pour vous remercier sincérement d'avoir choisi de faire confiance à DOCDOC");
+"Contacter le support.\n" +
+"Votre message.");
                             
                             //m.getAttachments().put("", "text/plain");
                             //m.getAttachments().put("", "image/png");
                             
-                            Display.getInstance().sendMessage(new String[] {p.getEmail()}, "Subject of message", m);
+                            Display.getInstance().sendMessage(new String[] {"docdocpidev@gmail.com"}, "Subject of message", m);
                                                      
                             Dialog.show("Success","Connection accepted", new Command("OK")); 
                             

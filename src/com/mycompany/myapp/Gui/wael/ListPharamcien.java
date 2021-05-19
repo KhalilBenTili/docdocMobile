@@ -13,6 +13,7 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.mycompany.myapp.Entities.User;
+import com.mycompany.myapp.Home;
 import com.mycompany.myapp.Services.UserService;
 
 /**
@@ -27,7 +28,7 @@ public class ListPharamcien extends Form {
           for (User p : UserService.getInstance().getAllUsersPharmacie()){
             addItem(p);
         }
-        getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e->previous.showBack());
+        getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e->new Home().show());
     }
     
       
