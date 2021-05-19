@@ -175,6 +175,8 @@ public class Service implements Comparable<Service> {
         return  (int) ((int) prix-o.getPrix());
     }
 
+   
+
  
     
    

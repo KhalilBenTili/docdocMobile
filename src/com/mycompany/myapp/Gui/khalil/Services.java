@@ -5,10 +5,21 @@
  */
 package com.mycompany.myapp.Gui.khalil;
 
+import com.codename1.components.ImageViewer;
+import com.codename1.ui.Button;
 import com.codename1.ui.Container;
+import com.codename1.ui.FontImage;
+import com.codename1.ui.Form;
+import com.codename1.ui.Image;
 import com.codename1.ui.Label;
+import com.codename1.ui.TextField;
 import com.codename1.ui.layouts.BoxLayout;
-import com.mycompany.myapp.Entities.Paiement;
+import com.codename1.ui.plaf.UIManager;
+import com.codename1.ui.util.Resources;
+import com.mycompany.myapp.Entities.Service;
+import com.mycompany.myapp.Home;
+import com.mycompany.myapp.Services.ServiceService;
+import java.io.IOException;
 
 /**
  * GUI builder created Form
@@ -16,53 +27,89 @@ import com.mycompany.myapp.Entities.Paiement;
  * @author khali
  */
 public class Services extends com.codename1.ui.Form {
+ private Resources theme;
 
-    public Services() {
+        Form current;
+public Services(Form previous) {
+        theme = UIManager.initFirstTheme("/theme");
+
+        setTitle("Services");
        
+
+             TextField rech = new TextField("","Nom");
+            Button recherche = new Button("Recherche");
+//            recherche.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent evt) {
+//                ServiceService.getInstance().RechercheNom(rech.getText());
+//                new RechercheNom(rech.getText()).show();
+//               
+//            }
+//        });
+        add(rech);
+        add(recherche); 
+        ServiceService serv= new ServiceService();
+        for (Service s : serv.Services()){
+            
+            addItem(s);
+        }
+        getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e->new Home().show());
     }
-    
-    public Services(com.codename1.ui.util.Resources resourceObjectInstance) {
-        initGuiBuilderComponents(resourceObjectInstance);
-    }
-    public void addItem(Paiement P){
+
+     public void addItem(Service s){
         Container C1 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         Container C2 = new Container(new BoxLayout(BoxLayout.X_AXIS));
-        Label nom = new Label("Nom : "+P.getNom());
-        Label prenom = new Label("Prenom : "+P.getPrenom());
-        Label adresse = new Label("Adresse : "+P.getAdresse());
-        Label numero = new Label("Numero : "+String.valueOf(P.getNumero()));
-        Label email = new Label("Email : "+P.getEmail());
-        Label prix = new Label("Prix : "+String.valueOf(P.getPrix()));
-        Label type = new Label("Type : "+P.getType());
-        Label status = new Label("Status : "+P.getStatus());
-        Label sep = new Label("------------------------------------------------------------------");
+        Container C3 = new Container(new BoxLayout(BoxLayout.X_AXIS));
+
+        Label libelle = new Label("Libelle : "+s.getLibelle());
+//        Label categorie = new Label("Categorie: "+s.getCategorie().getLibelle());
+        Label description = new Label("Description : "+s.getDescription());
+        Label prix = new Label("Prix : "+String.valueOf(s.getPrix()));
+        Label rate = new Label("Rate : "+String.valueOf(s.getAvgrating()));
+              
+        Label sep = new Label("-------------------------------------------------------------------");
         
-        C1.add(nom);
-        C1.add(prenom);
-        C1.add(adresse);
-        C1.add(numero);
-        C1.add(email);
+        ImageViewer m = new ImageViewer();      
+        C3.add(libelle);
+        C1.add(C3);
+//               try {
+//         //   Image img = Image.createImage("/icon.png");
+//            C3.add("               ");
+//          //  C3.add(img);
+//        } catch (IOException ex) {
+//        }
+      // C1.add(categorie);
+        C1.add(description);
         C1.add(prix);
-        C1.add(type);
-        C1.add(status);
+       
+        C1.add(rate);
         C1.add(sep);
         C2.add(C1);
         add(C2);
         
     }
-
-////-- DON'T EDIT BELOW THIS LINE!!!
-
-
-// <editor-fold defaultstate="collapsed" desc="Generated Code">                          
-    private void initGuiBuilderComponents(com.codename1.ui.util.Resources resourceObjectInstance) {
-        setLayout(new com.codename1.ui.layouts.LayeredLayout());
-        setInlineStylesTheme(resourceObjectInstance);
-        setScrollableY(true);
-                setInlineStylesTheme(resourceObjectInstance);
-        setTitle("Services");
-        setName("Services");
-    }// </editor-fold>
-
-//-- DON'T EDIT ABOVE THIS LINE!!!
 }
+//  public Services() {
+//        setTitle("Liste des Chambre");
+//        
+//
+//          Container co=new Container(BoxLayout.xCenter());;
+//                    ArrayList <Service> services = new ArrayList();
+//                        ServiceService serv =new ServiceService();
+//                    services=serv.Services();
+//                             for (Service ser : services) {
+//                            Container ct = new Container(BoxLayout.y());
+//                            Label l = new Label("Libelle : "+ser.getLibelle());
+//                            Label l2 = new Label("Catégorie : "+ser.getCategorie().getLibelle(),"SmallLabel");
+//                            Label l4 = new Label("PRIX : "+ser.getPrix()+" DT","RedLabel");
+//                            l2.getAllStyles().setFgColor(0xf15f5f);
+//                            ct.add(l);
+//                            ct.add(l2);
+//                            ct.add(l4);
+//                            
+//                            
+//                       Label separator = new Label("","Separator");
+//                       ct.add(separator);
+//                       add(ct);
+//                             }
+//}

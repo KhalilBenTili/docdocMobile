@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  *
@@ -27,18 +29,25 @@ import java.util.Map;
 public class ServiceService {
     public boolean resultOK;
      public ArrayList<Service> services;
-    public boolean Services(Service s){
-        String url = Statics.BASE_URL+"/services";
-        ConnectionRequest req= new ConnectionRequest();
+      ConnectionRequest req= new ConnectionRequest();
+    
+      
+      public ArrayList<Service> Services(){
+        String url = Statics.BASE_URL+"/afficheServiceMobile";
+        req.setUrl(url);
+        req.setPost(false);
         req.addResponseListener(new ActionListener<NetworkEvent>(){
             @Override
             public void actionPerformed(NetworkEvent evt) {
-                   resultOK =req.getResponseCode()==200;
+                   services =parseService(new String(req.getResponseData()));
+                req.removeResponseListener(this);
             }
         });
-
-        return resultOK;
+         NetworkManager.getInstance().addToQueueAndWait(req);
+        return services;
     }
+      
+      
     public ArrayList<Service> parseService(String jsonText){
         try {
            this.services=new ArrayList<>();
@@ -52,23 +61,19 @@ public class ServiceService {
             for(Map<String,Object> obj : list){
                 //Création des tâches et récupération de leurs données
                 Service s = new Service();
-                s.setId((int)obj.get("id"));
+                s.setId((int) Float.parseFloat(obj.get("id").toString()));
                 s.setLibelle(obj.get("libelle").toString());
-                s.setDescription(obj.get("description").toString());
-                s.setAvgrating((Float)obj.get("avgrating"));
-                s.setPrix((Float)obj.get("prix"));
-                CategorieService c=new CategorieService(obj.get("categorie.libelle").toString(),obj.get("categorie.description").toString());
-                s.setCategorie(c);
-                ArrayList<FournisseurService> t=new ArrayList<>();
-                //array fournniseur   
+                s.setDescription(obj.get("description").toString());  
+                s.setPrix((float)Float.parseFloat(obj.get("prix").toString()));
+                s.setAvgrating((float )Float.parseFloat(obj.get("avgrating").toString()));
+               //CategorieService c=new CategorieService(obj.get("categorie.libelle").toString(),obj.get("categorie.description").toString());
+              //  s.setCategorie(c);
                 //Ajouter la tâche extraite de la réponse Json à la liste
                 services.add(s);
             }
             
             
-        } catch (IOException ex) {
-            
-        }
+        } catch (IOException ex) {}
         return services;
     }
     
